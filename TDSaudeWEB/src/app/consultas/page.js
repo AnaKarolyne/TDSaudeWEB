@@ -1,10 +1,24 @@
+import React, { useEffect, useState } from "react"; // Importe useEffect e useState se necessário
 import NavBar from "@/components/NavBar";
 import DataRow from "./DataRow";
 import Button from "@/components/Button";
 import { getConsulta } from "@/actions/consultas";
 
 export default function Consulta() {
-  const data = await getConsulta()
+  const [data, setData] = useState([]); // Use o estado para armazenar os dados
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const consultaData = await getConsulta();
+        setData(consultaData);
+      } catch (error) {
+        console.error("Erro ao buscar os dados da consulta:", error);
+      }
+    }
+
+    fetchData();
+  }, []); // Chame a função fetchData() apenas uma vez quando o componente for montado
 
   return (
     <>
@@ -19,10 +33,11 @@ export default function Consulta() {
         </div>
 
         <div id="data" className="text-slate-300 m-1">
-          {data.map(consulta => <DataRow consulta={consulta} /> )}
+          {data.map((consulta, index) => (
+            <DataRow key={index} consulta={consulta} />
+          ))}
         </div>
       </main>
     </>
-
-  )
+  );
 }
