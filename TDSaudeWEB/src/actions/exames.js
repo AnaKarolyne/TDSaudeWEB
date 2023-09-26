@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { cookies } from 'next/headers'
 
-const url = process.env.NEXT_PUBLIC_BASE_URL + "/consultas"
+const url = process.env.NEXT_PUBLIC_BASE_URL + "/exames"
 
 
 export async function create(formData) {
@@ -23,12 +23,12 @@ export async function create(formData) {
         const erros = json.reduce((str, erro) => str += ". " + erro.message, "")
         return {message: "Erro ao cadastrar" + erros}
     }
-    revalidatePath("/consultas")
+    revalidatePath("/exames")
     return {ok: "success"}
     
 }
 
-export async function getConsultas(){
+export async function getEmergencia(){
     const token = cookies().get("tdsaudeweb_token")
     const options = {
         method: "GET",
@@ -50,18 +50,18 @@ export async function destroy(id){
 
     const resp = await fetch(deleteUrl, options)
 
-    if (resp.status !== 204) return {error: "Erro ao apagar consulta. " + resp.status}
+    if (resp.status !== 204) return {error: "Erro ao apagar exame. " + resp.status}
 
-    revalidatePath("/consultas")
+    revalidatePath("/exames")
 
 }
 
-export async function update(consulta){
-    const updateURL = url + "/" + consulta.id
+export async function update(exame){
+    const updateURL = url + "/" + exame.id
 
     const options = {
         method: "PUT",
-        body: JSON.stringify(consulta),
+        body: JSON.stringify(exame),
         headers: {
             "Content-Type": "application/json"
         }
@@ -69,15 +69,15 @@ export async function update(consulta){
 
     const resp = await fetch(updateURL, options)
 
-    if (resp.status !== 200) return {error: "Erro ao atualizar consulta. " + resp.status}
+    if (resp.status !== 200) return {error: "Erro ao atualizar exames. " + resp.status}
 
     revalidatePath("/")
 }
 
-export async function getConsulta(id){
+export async function getExame(id){
     const getUrl = url + "/" + id
     const resp = await fetch(getUrl)
-    if (resp.status !== 200) return {error: "Erro ao buscar dados da consulta. " + resp.status}
+    if (resp.status !== 200) return {error: "Erro ao buscar dados da exame. " + resp.status}
     const json = await resp.json()
     return json
 }

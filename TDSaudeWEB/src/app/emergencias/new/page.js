@@ -28,7 +28,7 @@ export default function FormEmergencias() {
             <main className="bg-slate-900 mt-10 p-12 rounded-xl max-w-lg m-auto">
                 <h2 className="text-2xl font-bold">Cadastrar Informações de Emergencia</h2>
                 <form action={handleSubmit}>
-                    <InputText name="novo" id="nome" label="nome"/>
+                    <InputText name="nome" id="nome" label="nome"/>
                     <InputText name="telefone_emergencia" id="telefoneEmergencia" label="telefone" type="number"/>
                     <InputText name="alergia" id="alergia" label="alergia"/>
                     <InputText name="medicacoes_proibidas" id="medicacoesProibidas" label="medicacoes"/>

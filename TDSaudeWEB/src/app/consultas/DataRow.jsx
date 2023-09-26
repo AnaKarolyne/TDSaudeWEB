@@ -9,7 +9,7 @@ export default function DataRow({consulta}) {
             </div>
             <div className="flex items-center">
                 <span className="invisible group-hover/row:visible" >
-                    <DropMenu />    
+                    <DropMenu consulta={consulta}/>    
                 </span>
             </div>
         </div>
