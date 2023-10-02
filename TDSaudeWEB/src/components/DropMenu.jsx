@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { ChevronDown } from 'lucide-react';
-import { destroy } from '@/actions/contas';
+import { destroy } from '@/actions/consultas';
 import toast from 'react-hot-toast';
 
 import {
@@ -22,7 +22,7 @@ import {
 import { useRouter } from 'next/navigation';
 
 
-export default function DropMenu({ conta }) {
+export default function DropMenu({ consultas }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const { push } = useRouter()
@@ -35,16 +35,16 @@ export default function DropMenu({ conta }) {
   };
 
   const handleDelete = async () => {
-    const resp = await destroy(conta.id)
+    const resp = await destroy(consultas.id)
     if (resp?.error) {
       toast.error(resp.error, { style: { background: '#333', color: '#FFF' } })
       return
     }
-    toast.success("Conta deletada com sucesso", { style: { background: '#333', color: '#FFF' } })
+    toast.success("Consulta deletada com sucesso", { style: { background: '#333', color: '#FFF' } })
   }
 
   const handleEdit = () => {
-    push(`/contas/${conta.id}/edit`)
+    push(`/consultas/${consultas.id}/edit`)
   }
 
 
