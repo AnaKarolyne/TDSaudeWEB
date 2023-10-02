@@ -74,7 +74,7 @@ export async function update(emergencia){
     revalidatePath("/")
 }
 
-export async function getEmergencia(id){
+export async function getEmergencias(id){
     const getUrl = url + "/" + id
     const resp = await fetch(getUrl)
     if (resp.status !== 200) return {error: "Erro ao buscar dados da emergencia. " + resp.status}
