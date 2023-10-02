@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache"
 import { cookies } from 'next/headers'
 
-const url = process.env.NEXT_PUBLIC_BASE_URL + "/emergencias"
+const url = process.env.NEXT_PUBLIC_BASE_URL + "/cadastro"
 
 
 export async function create(formData) {
