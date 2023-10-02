@@ -28,7 +28,7 @@ export async function create(formData) {
     
 }
 
-export async function getCadastros(){
+export async function getCadastro(){
     const token = cookies().get("tdsaudeweb_token")
     const options = {
         method: "GET",
